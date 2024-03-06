@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snake</title>
+</head>
+<body>
+    <canvas id="canvas" width="1024" height="1024"></canvas>
+    <script>
+        var game = {
+            board: [
+                "###############",
+                "#             #",
+                "#             #",
+                "#             #",
+                "#     ####    #",
+                "#     ####    #",
+                "#             #",
+                "#             #",
+                "#             #",
+                "###############"
+            ] // Removed the semicolon here
+        };
+
+        var graphics = {
+            canvas: document.getElementById("canvas"),
+            squareSize: 30,
+            drawBoard: function() {
+                var ctx = graphics.canvas.getContext("2d");
+                var curYoffset = 0; // Corrected variable name
+                game.board.forEach(function checkLine(line) {
+                    line = line.split('');
+                    var curXoffset = 0;
+                    line.forEach(function checkCharacter(character) {
+                        if (character == '#') {
+                            ctx.fillStyle = "black";
+                            ctx.fillRect(curXoffset, curYoffset, graphics.squareSize, graphics.squareSize); // Corrected variable name
+                        }
+                        curXoffset += graphics.squareSize;
+                    });
+                    curYoffset += graphics.squareSize; // Corrected variable name
+                });
+            }
+        }
+        graphics.drawBoard();
+    </script>
+</body>
+</html>
